@@ -1,7 +1,16 @@
-export const Statistics = () => {
+export const Statistics = ({ title, stats }) => {
   return (
-    <>
-      <h2>Statistics</h2>
-    </>
+    <section className="statistics">
+      <h2 className="title">{title}</h2>
+
+      <ul className="stat-list">
+        {stats.map(({ id, label, percentage }) => (
+          <li key={id} className="item">
+            <span className="label">{label}</span>
+            <span className="percentage">{percentage}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 };

@@ -1,7 +1,10 @@
 import { Profile } from "./components/Profile/Profile";
 import { Statistics } from "./components/Statistics/Statistics";
 import user from "../../resources/user.json";
+import data from "../../resources/data.json";
 import css from "./HomeWork1.module.css";
+
+const title = "Upload stats";
 
 export const HomeWork1 = () => {
   return (
@@ -13,7 +16,7 @@ export const HomeWork1 = () => {
         avatar={user.avatar}
         stats={user.stats}
       />
-      <Statistics />
+      <Statistics title={title} stats={data} />
     </div>
   );
 };
