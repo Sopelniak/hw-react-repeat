@@ -1,17 +1,17 @@
-.Layout {
+.headerBox {
   text-align: center;
 }
 
-.Layout-header {
+.header {
   background-color: #282c34;
   height: 60px;
+}
+
+.nav {
+  color: #61dafb;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.Layout-link {
-  color: #61dafb;
 }
