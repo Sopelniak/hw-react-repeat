@@ -4,7 +4,7 @@ export const HomeWork2 = () => {
   return (
     <>
       <Link to="/home-work2/feedback">Feedback</Link>
-      <Link>Phonebook</Link>
+      <Link to="/home-work2/phonebook">Phonebook</Link>
       <Outlet />
     </>
   );

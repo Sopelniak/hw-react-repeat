@@ -5,6 +5,7 @@ import { HomeWork2 } from "../pages/HomeWork2/HomeWork2";
 import { NotFound } from "../pages/NotFound/NotFound";
 import css from "./App.module.css";
 import { Feedback } from "../pages/HomeWork2/components/Feedback/Feedback";
+import { Phonebook } from "../pages/HomeWork2/components/Phonebook/Phonebook";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <Route path="/home-work1" element={<HomeWork1 />} />
         <Route path="/home-work2" element={<HomeWork2 />}>
           <Route path="feedback" element={<Feedback />} />
-          <Route path="phonebook" element={<HomeWork1 />} />
+          <Route path="phonebook" element={<Phonebook />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
