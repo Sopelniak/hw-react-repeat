@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { FormAddContact } from "./FormAddContact/FormAddContact";
+import { ContactsList } from "./ContactsList/ContactsList";
 
 export class Phonebook extends Component {
   state = {
@@ -46,17 +47,7 @@ export class Phonebook extends Component {
             type="text"
           />
         </label>
-
-        <ol>
-          {contacts.map((contact) => {
-            return (
-              <li key={contact.id}>
-                <span>{contact.name}</span>
-                <span> - {contact.number}</span>
-              </li>
-            );
-          })}
-        </ol>
+        <ContactsList contacts={contacts} />
       </>
     );
   }
