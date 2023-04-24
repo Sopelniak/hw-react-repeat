@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { FormAddContact } from "./FormAddContact/FormAddContact";
 import { ContactsList } from "./ContactsList/ContactsList";
+import { Filter } from "./Filter/Filter";
 
 export class Phonebook extends Component {
   state = {
@@ -14,14 +15,24 @@ export class Phonebook extends Component {
   };
 
   addContact = (newContact) => {
-    this.setState((prevState) => {
-      return {
-        contacts: [...prevState.contacts, newContact],
-      };
-    });
+    const { contacts } = this.state;
+    if (
+      contacts.find(
+        (contact) =>
+          contact.name.toLowerCase() === newContact.name.toLowerCase()
+      )
+    ) {
+      alert(`${newContact.name} is already in the contacts`);
+    } else {
+      this.setState((prevState) => {
+        return {
+          contacts: [...prevState.contacts, newContact],
+        };
+      });
+    }
   };
 
-  onFilter = (e) => {
+  filterHandler = (e) => {
     this.setState({ filter: e.target.value });
   };
 
@@ -30,24 +41,29 @@ export class Phonebook extends Component {
       contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
     );
 
+  deleteContact = (id) => {
+    this.setState((prevState) => {
+      const contactsUpdate = prevState.contacts.filter(
+        (contact) => contact.id !== id
+      );
+      return { contacts: contactsUpdate };
+    });
+  };
+
   render() {
-    const { filter } = this.state;
     const contacts = this.filterContacts();
     return (
       <>
         <h1>Книга контактів</h1>
         <FormAddContact addContact={this.addContact} />
+
         <h2>Contacts</h2>
-        <label>
-          Filter contacts by name
-          <input
-            onChange={this.onFilter}
-            value={filter}
-            name="filter"
-            type="text"
-          />
-        </label>
-        <ContactsList contacts={contacts} />
+        {this.state.contacts.length > 0 ? (
+          <Filter onFilter={this.filterHandler} filter={this.state.filter} />
+        ) : (
+          <p>There is no contacts</p>
+        )}
+        <ContactsList contacts={contacts} deleteContact={this.deleteContact} />
       </>
     );
   }
