@@ -2,6 +2,7 @@ import { Component } from "react";
 import { FormAddContact } from "./FormAddContact/FormAddContact";
 import { ContactsList } from "./ContactsList/ContactsList";
 import { Filter } from "./Filter/Filter";
+import { Section } from "./Section/Section";
 
 export class Phonebook extends Component {
   state = {
@@ -55,15 +56,22 @@ export class Phonebook extends Component {
     return (
       <>
         <h1>Книга контактів</h1>
-        <FormAddContact addContact={this.addContact} />
+        <Section title="">
+          <FormAddContact addContact={this.addContact} />
+        </Section>
 
-        <h2>Contacts</h2>
-        {this.state.contacts.length > 0 ? (
-          <Filter onFilter={this.filterHandler} filter={this.state.filter} />
-        ) : (
-          <p>There is no contacts</p>
-        )}
-        <ContactsList contacts={contacts} deleteContact={this.deleteContact} />
+        <Section>
+          <h2>Contacts</h2>
+          {this.state.contacts.length > 0 ? (
+            <Filter onFilter={this.filterHandler} filter={this.state.filter} />
+          ) : (
+            <p>There is no contacts</p>
+          )}
+          <ContactsList
+            contacts={contacts}
+            deleteContact={this.deleteContact}
+          />
+        </Section>
       </>
     );
   }
