@@ -34,7 +34,10 @@ export class Feedback extends Component {
         <h1>Віджет відгуків кафе "Expresso"</h1>
 
         <Section title="Please leave feedback">
-          <FeedbackOptions leaveFeedback={this.leaveFeedback} />
+          <FeedbackOptions
+            options={["good", "neutral", "bad"]}
+            leaveFeedback={this.leaveFeedback}
+          />
         </Section>
         <Section title="Statistics">
           {isFeedback ? (

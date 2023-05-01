@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const Contact = ({ contact, deleteContact }) => {
   const { name, number, id } = contact;
 
@@ -14,4 +16,9 @@ export const Contact = ({ contact, deleteContact }) => {
       </button>
     </li>
   );
+};
+
+Contact.propTypes = {
+  contact: PropTypes.object.isRequired,
+  deleteContact: PropTypes.func.isRequired,
 };
