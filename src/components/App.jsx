@@ -6,6 +6,8 @@ import { NotFound } from "../pages/NotFound/NotFound";
 import css from "./App.module.css";
 import { Feedback } from "../pages/HomeWork2/components/Feedback/Feedback";
 import { Phonebook } from "../pages/HomeWork2/components/Phonebook/Phonebook";
+import { HomeWork3 } from "../pages/HomeWork3/HomeWork3";
+import { ImgFinder } from "../pages/HomeWork3/components/ImgFinder/ImgFinder";
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
             <Link to="/">Home</Link>
             <Link to="/home-work1">HW-1</Link>
             <Link to="/home-work2">HW-2</Link>
+            <Link to="/home-work3">HW-3</Link>
           </nav>
         </header>
       </div>
@@ -26,6 +29,10 @@ function App() {
           <Route path="feedback" element={<Feedback />} />
           <Route path="phonebook" element={<Phonebook />} />
         </Route>
+        <Route path="/home-work3" element={<HomeWork3 />}>
+          <Route path="img-finder" element={<ImgFinder />} />
+        </Route>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
