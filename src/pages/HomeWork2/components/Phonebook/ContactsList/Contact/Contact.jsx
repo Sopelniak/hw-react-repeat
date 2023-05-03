@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
+import css from "./Contact.module.css";
 
 export const Contact = ({ contact, deleteContact }) => {
   const { name, number, id } = contact;
@@ -10,12 +11,7 @@ export const Contact = ({ contact, deleteContact }) => {
   };
 
   return (
-    <li>
-      <span>{name}</span>
-      <span> - {number}</span>
-      {/* <button type="button" id={id} onClick={onBtnClick}>
-        Delete
-      </button> */}
+    <li className={css.item}>
       <Button
         variant="outlined"
         startIcon={<DeleteIcon />}
@@ -24,6 +20,14 @@ export const Contact = ({ contact, deleteContact }) => {
       >
         Delete
       </Button>
+
+      <div>
+        <span>{name}</span>
+        <span> - {number}</span>
+        {/* <button type="button" id={id} onClick={onBtnClick}>
+        Delete
+      </button> */}
+      </div>
     </li>
   );
 };

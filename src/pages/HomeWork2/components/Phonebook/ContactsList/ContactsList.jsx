@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import { Contact } from "./Contact/Contact";
+import css from "./ContactsList.module.css";
 
 export const ContactsList = ({ contacts, deleteContact }) => (
-  <ol>
+  <ol className={css.list}>
     {contacts.map((contact) => (
       <Contact
         key={contact.id}
