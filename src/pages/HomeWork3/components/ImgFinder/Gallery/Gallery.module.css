@@ -1,0 +1,32 @@
+.title {
+  display: flex;
+  justify-content: center;
+  line-height: 70%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: blueviolet;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  background-color: blueviolet;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+  list-style: none;
+}
+
+button.load-more {
+  display: none;
+  margin: 20px auto;
+}

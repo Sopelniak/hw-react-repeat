@@ -1,22 +1,47 @@
-import React, { Component } from "react";
+import { Field, Form, Formik } from "formik";
+// import React, { Component } from "react";
 
-export class SearchForm extends Component {
-  state = {};
-  render() {
-    return (
-      <form class="form">
-        <button type="submit" class="button">
-          <span class="button-label">Search</span>
+const INITIAL_VALUES = { request: "" };
+
+// export className SearchForm extends Component {
+//   state = {};
+//   render() {
+//     return (
+//       <form className="form">
+//         <button type="submit" className="button">
+//           <span className="button-label">Search</span>
+//         </button>
+
+//         <input
+//           className="input"
+//           type="text"
+//           autocomplete="off"
+//           autofocus
+//           placeholder="Search images and photos"
+//         />
+//       </form>
+//     );
+//   }
+// }
+
+export function SearchForm({ setQuery }) {
+  const onSubmit = (values, actions) => {
+    setQuery(values.request);
+  };
+  return (
+    <Formik initialValues={INITIAL_VALUES} onSubmit={onSubmit}>
+      <Form className="form" autoComplete="off">
+        <button type="submit" className="button">
+          <span className="button-label">Search</span>
         </button>
 
-        <input
-          class="input"
+        <Field
+          name="request"
           type="text"
-          autocomplete="off"
-          autofocus
+          autoFocus
           placeholder="Search images and photos"
         />
-      </form>
-    );
-  }
+      </Form>
+    </Formik>
+  );
 }
