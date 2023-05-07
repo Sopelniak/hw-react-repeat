@@ -1,53 +1,92 @@
 import React, { Component } from "react";
 import { Modal } from "../../../../components/Modal/Modal";
 import { Searchbar } from "./Searchbar/Searchbar";
-import axios from "axios";
 import { Gallery } from "./Gallery/Gallery";
-
-axios.defaults.baseURL = "https://pixabay.com/api/";
-const keyPixabay = "30807685-8e6cd00353cc1057d11bd8bf4";
+import { Loader } from "./Loader/Loader";
+import { getImages } from "./services/api";
+import { Btn } from "./Button/Button";
 
 export class ImgFinder extends Component {
   state = {
     query: "",
+    page: 1,
     imgs: [],
+    img: null,
+    isLoading: false,
     isModalOpen: false,
+    error: "",
   };
 
-  async componentDidMount() {
-    const response = await axios.get(
-      `?q=cat&page=1&key=${keyPixabay}&image_type=photo&orientation=horizontal&per_page=12`
-    );
-    this.setState({ imgs: response.data.hits });
-    console.log(response.data.hits);
+  componentDidMount() {
+    this.fetchData();
   }
 
-  async componentDidUpdate(prevProps, prevState) {
-    const response = await axios.get(
-      `?q=${this.state.query}&page=1&key=${keyPixabay}&image_type=photo&orientation=horizontal&per_page=12`
-    );
-    if (this.state.query !== prevState.query) {
-      this.setState({ imgs: response.data.hits });
-      console.log(response.data.hits);
+  componentDidUpdate(prevProps, prevState) {
+    const { query, page } = this.state;
+    if (query !== prevState.query || page !== prevState.page) {
+      this.fetchData();
     }
   }
 
-  setQuery = (query) => {
-    this.setState({ query: query });
+  fetchData = async () => {
+    const { query, page } = this.state;
+    try {
+      this.setState({ isLoading: true });
+      const response = await getImages(query, page);
+
+      this.setState((prevState) => {
+        return {
+          imgs:
+            page === 1
+              ? [...response.data.hits]
+              : [...prevState.imgs, ...response.data.hits],
+        };
+      });
+    } catch (error) {
+      this.setState({ error: error.message });
+    } finally {
+      this.setState({ isLoading: false });
+    }
+  };
+
+  handleSubmit = (query) => {
+    this.setState({ query, page: 1 });
+  };
+
+  handleClickItem = (item) => {
+    this.setState({ img: item, isModalOpen: true });
+  };
+
+  onLoadMore = () => {
+    this.setState((prevState) => {
+      return { page: prevState.page + 1 };
+    });
+  };
+
+  onCloseModal = () => {
+    this.setState({ isModalOpen: false, error: "" });
   };
 
   render() {
-    const { imgs, isModalOpen } = this.state;
+    const { imgs, img, isModalOpen, isLoading, error } = this.state;
     return (
       <>
-        <Searchbar setQuery={this.setQuery} />
-        <Gallery items={imgs} />
+        <Searchbar setQuery={this.handleSubmit} />
+        {error && (
+          <Modal onCloseModal={this.onCloseModal}>ERROR: {error}</Modal>
+        )}
+        <Gallery items={imgs} handleClickItem={this.handleClickItem} />
+        {imgs.length > 0 && <Btn onClick={this.onLoadMore}>Load more...</Btn>}
         {isModalOpen && (
-          <Modal>
-            <p>Hallo, ANDREY</p>
+          <Modal onCloseModal={this.onCloseModal}>
+            <img src={img.largeImageURL} alt={img.tags} />
           </Modal>
         )}
-        {/* <p>SearchBar</p> */}
+        {isLoading && (
+          <Modal>
+            <Loader />
+          </Modal>
+        )}
       </>
     );
   }

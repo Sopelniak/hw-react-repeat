@@ -27,8 +27,10 @@
 .info p {
   text-align: center;
   margin: 5px 0;
+  font-size: 14px;
 }
 
 .info b {
   display: block;
+  font-size: 12px;
 }
