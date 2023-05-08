@@ -69,6 +69,7 @@ export class ImgFinder extends Component {
 
   render() {
     const { imgs, img, isModalOpen, isLoading, error } = this.state;
+
     return (
       <>
         <Searchbar setQuery={this.handleSubmit} />
