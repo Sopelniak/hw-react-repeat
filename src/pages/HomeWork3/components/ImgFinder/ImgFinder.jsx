@@ -25,6 +25,12 @@ export class ImgFinder extends Component {
     const { query, page } = this.state;
     if (query !== prevState.query || page !== prevState.page) {
       this.fetchData();
+      setTimeout(() => {
+        window.scrollBy({
+          top: window.innerHeight - 190,
+          behavior: "smooth",
+        });
+      }, 500);
     }
   }
 
