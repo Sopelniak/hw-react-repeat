@@ -20,10 +20,10 @@ function App() {
         <header className={css.header}>
           <nav className={css.nav}>
             <Link to="/">Home</Link>
-            <Link to="/home-work1">HW-1</Link>
-            <Link to="/home-work2">HW-2</Link>
-            <Link to="/home-work3">HW-3</Link>
-            <Link to="/home-work4">HW-4</Link>
+            <Link to="/home-work1">HW1-Introduction</Link>
+            <Link to="/home-work2">HW2-States</Link>
+            <Link to="/home-work3">HW3-Lifecycle</Link>
+            <Link to="/home-work4">HW4-Hooks</Link>
           </nav>
         </header>
       </div>
