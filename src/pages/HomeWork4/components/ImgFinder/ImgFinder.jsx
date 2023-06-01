@@ -7,7 +7,7 @@ import { getImages } from "./services/api";
 import { Btn } from "./Button/Button";
 import { Notification } from "../../../../components/Notification/Notification";
 
-export const ImgFinder_4 = () => {
+export const ImgFinder4 = () => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [imgs, setImgs] = useState([]);

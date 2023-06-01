@@ -4,7 +4,7 @@ import { ContactsList } from "./ContactsList/ContactsList";
 import { Filter } from "./Filter/Filter";
 import { Section } from "./Section/Section";
 
-export const Phonebook4 = () => {
+export const Phonebook6 = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState("");
 

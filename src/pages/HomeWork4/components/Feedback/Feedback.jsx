@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   bad: 0,
 };
 
-export const Feedback_4 = () => {
+export const Feedback4 = () => {
   const [feedback, setFeedback] = useState(INITIAL_STATE);
 
   const leaveFeedback = (param) => {
