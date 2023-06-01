@@ -3,15 +3,25 @@ import { FormAddContact } from "./FormAddContact/FormAddContact";
 import { ContactsList } from "./ContactsList/ContactsList";
 import { Filter } from "./Filter/Filter";
 import { Section } from "./Section/Section";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  actionAddContact,
+  actionDeleteContact,
+  actionUpdateContacts,
+} from "./redux/store";
 
 export const Phonebook6 = () => {
-  const [contacts, setContacts] = useState([]);
+  // const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState("");
+
+  const dispatch = useDispatch();
+
+  const contacts = useSelector((state) => state.contacts);
 
   useEffect(() => {
     const contactsInLS = localStorage.getItem("contacts");
     if (!!contactsInLS) {
-      setContacts(JSON.parse(contactsInLS));
+      dispatch(actionUpdateContacts(JSON.parse(contactsInLS)));
     }
   }, []);
 
@@ -30,7 +40,7 @@ export const Phonebook6 = () => {
     ) {
       alert(`${newContact.name} is already in the contacts`);
     } else {
-      setContacts((prevContacts) => [...prevContacts, newContact]);
+      dispatch(actionAddContact(newContact));
     }
   };
 
@@ -44,12 +54,7 @@ export const Phonebook6 = () => {
     );
 
   const deleteContact = (id) => {
-    setContacts((prevContacts) => {
-      const contactsUpdate = prevContacts.filter(
-        (contact) => contact.id !== id
-      );
-      return contactsUpdate;
-    });
+    dispatch(actionDeleteContact(id));
   };
 
   const filteredContacts = filterContacts();
@@ -62,11 +67,10 @@ export const Phonebook6 = () => {
 
       <Section>
         <h2>Contacts</h2>
-        {filteredContacts.length > 0 ? (
+        {contacts.length > 0 && (
           <Filter onFilter={filterHandler} filter={filter} />
-        ) : (
-          <p>There is no contacts</p>
         )}
+        {filteredContacts.length === 0 && <p>There is no contacts</p>}
         <ContactsList
           contacts={filteredContacts}
           deleteContact={deleteContact}

@@ -10,12 +10,12 @@ import { HomeWork3 } from "../pages/HomeWork3/HomeWork3";
 import { ImgFinder } from "../pages/HomeWork3/components/ImgFinder/ImgFinder";
 import { HomeWork4 } from "../pages/HomeWork4/HomeWork4";
 import { ImgFinder4 } from "../pages/HomeWork4/components/ImgFinder/ImgFinder";
-import { Phonebook4 } from "../pages/HomeWork4/components/Phonebook/Phonebook";
+import { Phonebook4 } from "../pages/HomeWork4/components/Phonebook/Phonebook4";
 import { Feedback4 } from "../pages/HomeWork4/components/Feedback/Feedback";
 import { HomeWork5 } from "../pages/HomeWork5/HomeWork5";
 import { HomeWork6 } from "../pages/HomeWork6/HomeWork6";
 import { Movies5 } from "../pages/HomeWork5/components/Movies/Movies";
-import { Phonebook6 } from "../pages/HomeWork6/components/Phonebook/Phonebook copy";
+import { Phonebook6 } from "../pages/HomeWork6/components/Phonebook/Phonebook6";
 
 function App() {
   return (
